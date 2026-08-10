@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Webpage</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>Creative Webpage</h1>
+        <p>Exploring HTML5 Canvas and CSS3 Design</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="navbar">
+        <a href="#">Home</a>
+        <a href="#">Gallery</a>
+        <a href="#">Projects</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>Welcome to My Webpage</h2>
+        <p>
+            This webpage demonstrates the use of HTML5 Canvas,
+            responsive layouts, and CSS styling techniques.
+        </p>
+    </div>
+
+    <!-- Canvas Section -->
+    <div class="canvas-section">
+        <h2>HTML5 Canvas Demonstration</h2>
+
+        <canvas id="myCanvas" width="700" height="250">
+            Your browser does not support HTML5 Canvas.
+        </canvas>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards-container">
+
+        <div class="card">
+            <h3>Canvas Graphics</h3>
+            <p>
+                HTML5 Canvas allows drawing shapes, lines, text,
+                and animations using JavaScript.
+            </p>
+
+            <button>Explore</button>
+        </div>
+
+        <div class="card">
+            <h3>Modern CSS</h3>
+            <p>
+                CSS3 provides responsive layouts, transitions,
+                gradients, shadows, and attractive designs.
+            </p>
+
+            <button>Learn More</button>
+        </div>
+
+        <div class="card">
+            <h3>Web Development</h3>
+            <p>
+                Combining HTML, CSS, and JavaScript helps create
+                interactive and visually appealing websites.
+            </p>
+
+            <button>Discover</button>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2026 Creative Webpage | Designed by Sravan Kumar</p>
+    </div>
+
+    <!-- Canvas Script -->
+    <script>
+
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Background
+        ctx.fillStyle = "#f4f4f4";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Rectangle
+        ctx.fillStyle = "#4CAF50";
+        ctx.fillRect(40, 40, 140, 80);
+
+        // Circle
+        ctx.beginPath();
+        ctx.arc(280, 80, 40, 0, Math.PI * 2);
+        ctx.fillStyle = "#2196F3";
+        ctx.fill();
+
+        // Triangle
+        ctx.beginPath();
+        ctx.moveTo(420, 120);
+        ctx.lineTo(500, 40);
+        ctx.lineTo(580, 120);
+        ctx.closePath();
+        ctx.fillStyle = "#FF9800";
+        ctx.fill();
+
+        // Line
+        ctx.beginPath();
+        ctx.moveTo(40, 180);
+        ctx.lineTo(650, 180);
+        ctx.strokeStyle = "#555";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // Name
+        ctx.font = "26px Arial";
+        ctx.fillStyle = "#E91E63";
+        ctx.fillText("Designed by Sravan Kumar", 180, 225);
+
+    </script>
+
+</body>
+
+</html>
