@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .todo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .todo input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .todo button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .todo button:hover {
+            background-color: #218838;
+        }
+
+        .todo button.clear-btn {
+            background-color: #dc3545;
+        }
+
+        .todo button.clear-btn:hover {
+            background-color: #c82333;
+        }
+
+        .list {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: white;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+
+        li span {
+            margin-left: 10px;
+            word-break: break-word;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>To-Do List</h1>
+
+    <div class="todo">
+        <label for="todo">To do:</label>
+        <input type="text" id="todo" placeholder="Enter your task here">
+        <button onclick="addTask()">ADD</button>
+        <button class="clear-btn" onclick="cleartasks()">CLEAR</button>
+    </div>
+
+    <div class="list">
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            const taskInput = document.getElementById("todo");
+            const taskList = document.getElementById("taskList");
+            const taskText = taskInput.value.trim();
+
+            // Prevent empty tasks
+            if (!taskText) {
+                return;
+            }
+
+            tasks.push(taskText);
+
+            const li = document.createElement("li");
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            const span = document.createElement("span");
+            span.textContent = taskText;
+
+            checkbox.addEventListener("change", function () {
+                span.style.textDecoration = this.checked ? "line-through" : "none";
+                span.style.color = this.checked ? "#888" : "#000";
+            });
+
+            li.appendChild(checkbox);
+            li.appendChild(span);
+            taskList.appendChild(li);
+
+            taskInput.value = "";
+            taskInput.focus();
+        }
+
+        function cleartasks() {
+            tasks = [];
+            document.getElementById("taskList").innerHTML = "";
+        }
+    </script>
+
+</body>
+
+</html> 
