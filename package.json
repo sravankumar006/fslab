@@ -1,0 +1,23 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000f\u0000s\u0000l\u0000a\u0000b\u0000\r\u0000 \u0000",
+  "homepage": "https://github.com/sravankumar006/fslab#readme",
+  "bugs": {
+    "url": "https://github.com/sravankumar006/fslab/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sravankumar006/fslab.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express.js": "^1.0.0"
+  }
+}
