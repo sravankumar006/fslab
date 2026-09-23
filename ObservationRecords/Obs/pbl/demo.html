@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation Demonstration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: #f8fafc;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    #targetCard {
+      padding: 16px;
+      border: 2px solid #cbd5e1;
+      border-radius: 6px;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    .btn-group button {
+      margin: 4px;
+      padding: 8px 14px;
+      cursor: pointer;
+      border: 1px solid #94a3b8;
+      background: #f1f5f9;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+    .btn-group button:hover {
+      background: #e2e8f0;
+    }
+    .highlighted {
+      border: 2px dashed #e11d48 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>DOM Manipulation Demo</h2>
+
+    <!-- Target Element -->
+    <div id="targetCard" data-status="inactive">
+      <h3 id="cardTitle">Original Heading</h3>
+      <p id="cardBody">This is the original paragraph content.</p>
+      <a id="cardLink" href="https://example.com" target="_blank">Visit Original Link</a>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="btn-group">
+      <button onclick="modifyContent()">1. Change Content</button>
+      <button onclick="modifyStyle()">2. Change Style</button>
+      <button onclick="modifyAttributes()">3. Change Attributes</button>
+      <button onclick="resetElement()">Reset</button>
+    </div>
+  </div>
+
+  <script>
+    const targetCard = document.getElementById('targetCard');
+    const cardTitle = document.getElementById('cardTitle');
+    const cardBody = document.getElementById('cardBody');
+    const cardLink = document.getElementById('cardLink');
+
+    // 1. Dynamically Change Content using textContent & innerHTML
+    function modifyContent() {
+      cardTitle.textContent = "Content Updated Successfully!";
+      cardBody.innerHTML = "New paragraph injected via <strong>innerHTML</strong> with bold text.";
+    }
+
+    // 2. Dynamically Change Style using the .style property
+    function modifyStyle() {
+      targetCard.style.backgroundColor = "#ecfdf5"; // Light mint green
+      targetCard.style.borderColor = "#10b981";     // Emerald
+      targetCard.style.boxShadow = "0 8px 16px rgba(16, 185, 129, 0.2)";
+      cardTitle.style.color = "#047857";
+    }
+
+    // 3. Dynamically Change Attributes using setAttribute() and classList
+    function modifyAttributes() {
+      // Modify href and title attributes
+      cardLink.setAttribute('href', 'https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model');
+      cardLink.setAttribute('title', 'Read MDN Web Docs');
+      cardLink.textContent = "Go to MDN DOM Documentation";
+
+      // Modify custom data attribute
+      targetCard.setAttribute('data-status', 'active');
+
+      // Toggle a CSS class attribute
+      targetCard.classList.toggle('highlighted');
+    }
+
+    // Reset back to initial state
+    function resetElement() {
+      cardTitle.textContent = "Original Heading";
+      cardBody.textContent = "This is the original paragraph content.";
+      cardLink.setAttribute('href', 'https://example.com');
+      cardLink.removeAttribute('title');
+      cardLink.textContent = "Visit Original Link";
+
+      targetCard.style.backgroundColor = "";
+      targetCard.style.borderColor = "";
+      targetCard.style.boxShadow = "";
+      cardTitle.style.color = "";
+      targetCard.className = "";
+      targetCard.setAttribute('data-status', 'inactive');
+    }
+  </script>
+
+</body>
+</html>

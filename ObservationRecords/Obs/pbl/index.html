@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Product Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+    h2 {
+      margin-top: 0;
+      color: #333333;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555555;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 14px;
+    }
+    input:focus {
+      outline: none;
+      border-color: #007bff;
+    }
+    .result-container {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #e9f5ff;
+      border-left: 4px solid #007bff;
+      border-radius: 4px;
+    }
+    .result-container p {
+      margin: 4px 0;
+      color: #333333;
+    }
+    .total-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #007bff;
+    }
+    .error {
+      color: #d9534f;
+      font-size: 12px;
+      margin-top: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Product Calculator</h2>
+
+    <div class="form-group">
+      <label for="productName">Product Name</label>
+      <input type="text" id="productName" placeholder="e.g., Mechanical Keyboard" value="Mechanical Keyboard">
+    </div>
+
+    <div class="form-group">
+      <label for="unitPrice">Unit Price (₹ / $)</label>
+      <input type="number" id="unitPrice" placeholder="0.00" min="0" step="0.01" value="45.00">
+      <div id="priceError" class="error">Price cannot be negative.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantity</label>
+      <input type="number" id="quantity" placeholder="0" min="0" step="1" value="1">
+      <div id="qtyError" class="error">Quantity cannot be negative.</div>
+    </div>
+
+    <div class="result-container">
+      <p><strong>Item:</strong> <span id="displayProductName">Mechanical Keyboard</span></p>
+      <p><strong>Total Price:</strong> <span class="total-price" id="totalPrice">₹45.00</span></p>
+    </div>
+  </div>
+
+  <script>
+    // DOM Element References
+    const productNameInput = document.getElementById('productName');
+    const unitPriceInput = document.getElementById('unitPrice');
+    const quantityInput = document.getElementById('quantity');
+
+    const displayProductName = document.getElementById('displayProductName');
+    const totalPriceDisplay = document.getElementById('totalPrice');
+    const priceError = document.getElementById('priceError');
+    const qtyError = document.getElementById('qtyError');
+
+    // Dynamic Calculation & UI Update Function
+    function calculateTotal() {
+      const nameValue = productNameInput.value.trim();
+      const priceValue = parseFloat(unitPriceInput.value);
+      const qtyValue = parseInt(quantityInput.value, 10);
+
+      let isValid = true;
+
+      // Price validation
+      if (isNaN(priceValue) || priceValue < 0) {
+        priceError.style.display = 'block';
+        isValid = false;
+      } else {
+        priceError.style.display = 'none';
+      }
+
+      // Quantity validation
+      if (isNaN(qtyValue) || qtyValue < 0) {
+        qtyError.style.display = 'block';
+        isValid = false;
+      } else {
+        qtyError.style.display = 'none';
+      }
+
+      // Update product display label
+      displayProductName.textContent = nameValue || "(Untitled Product)";
+
+      // Update total price display
+      if (isValid) {
+        const total = priceValue * qtyValue;
+        totalPriceDisplay.textContent = `₹${total.toFixed(2)}`;
+      } else {
+        totalPriceDisplay.textContent = "₹0.00";
+      }
+    }
+
+    // Attach Event Listeners to respond to live input changes
+    productNameInput.addEventListener('input', calculateTotal);
+    unitPriceInput.addEventListener('input', calculateTotal);
+    quantityInput.addEventListener('input', calculateTotal);
+
+    // Initial calculation on page load
+    calculateTotal();
+  </script>
+</body>
+</html>
