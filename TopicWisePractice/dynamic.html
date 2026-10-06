@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 1: HTML5 & CSS3 Practice</title>
+  <style>
+    * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f4f6f8; margin: 0; padding: 20px; }
+    .container { max-width: 700px; margin: auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+    h2 { color: #333; text-align: center; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+    
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-weight: 600; margin-bottom: 5px; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; transition: border 0.3s ease; }
+    input:focus, select:focus { border-color: #007bff; outline: none; }
+    
+    .radio-group { display: flex; gap: 15px; align-items: center; }
+    .radio-group input { width: auto; }
+
+    button { width: 100%; background: #007bff; color: white; border: none; padding: 12px; font-size: 16px; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+    button:hover { background: #0056b3; }
+
+    /* Canvas styling */
+    #drawingCanvas { display: block; margin: 20px auto 0; border: 2px dashed #007bff; background: #fff; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Student Registration Portal</h2>
+    <form action="#" method="POST">
+      <div class="form-group">
+        <label for="name">Full Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Institutional Email:</label>
+        <input type="email" id="email" name="email" placeholder="name@college.edu" required>
+      </div>
+
+      <div class="form-group">
+        <label>Gender:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="male" required> Male</label>
+          <label><input type="radio" name="gender" value="female"> Female</label>
+          <label><input type="radio" name="gender" value="other"> Other</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="branch">Select Branch:</label>
+        <select id="branch" name="branch" required>
+          <option value="">-- Choose Branch --</option>
+          <option value="aiml">AI & ML</option>
+          <option value="cse">Computer Science</option>
+          <option value="ece">Electronics & Comm.</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit Registration</button>
+    </form>
+
+    <h3 style="text-align: center; margin-top: 30px;">HTML5 &lt;canvas&gt; Graphic</h3>
+    <canvas id="drawingCanvas" width="400" height="150"></canvas>
+  </div>
+
+  <script>
+    // HTML5 Canvas 2D API Context
+    const canvas = document.getElementById("drawingCanvas");
+    const ctx = canvas.getContext("2d");
+
+    // Draw a gradient bar
+    const gradient = ctx.createLinearGradient(0, 0, 400, 0);
+    gradient.addColorStop(0, "#007bff");
+    gradient.addColorStop(1, "#00c6ff");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(20, 20, 360, 40);
+
+    // Draw a circle
+    ctx.beginPath();
+    ctx.arc(200, 100, 25, 0, Math.PI * 2);
+    ctx.fillStyle = "#ff5722";
+    ctx.fill();
+    ctx.closePath();
+  </script>
+</body>
+</html>
