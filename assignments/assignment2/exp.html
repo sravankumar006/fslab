@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML Lists and Tables Demo</title>
+</head>
+<body>
+
+  <h1>HTML Lists and Tables Demonstration</h1>
+  <hr>
+
+  <!-- ==================== SECTION 1: LISTS ==================== -->
+  <section id="lists-section">
+    <h2>1. Types of HTML Lists</h2>
+
+    <!-- Ordered List -->
+    <h3>A. Ordered List (Algorithm Steps)</h3>
+    <ol type="1">
+      <li>Start the program.</li>
+      <li>Initialize variables <code>a</code> and <code>b</code>.</li>
+      <li>Compute <code>sum = a + b</code>.</li>
+      <li>Display the result.</li>
+    </ol>
+
+    <!-- Unordered List -->
+    <h3>B. Unordered List (Core Web Technologies)</h3>
+    <ul type="disc">
+      <li>HTML5 (Structure)</li>
+      <li>CSS3 (Presentation)</li>
+      <li>JavaScript (Behavior &amp; Logic)</li>
+    </ul>
+
+    <!-- Description List -->
+    <h3>C. Description List (Key Terms)</h3>
+    <dl>
+      <dt><b>HTML</b></dt>
+      <dd>HyperText Markup Language - Standard document markup language for web browsers.</dd>
+      
+      <dt><b>CSS</b></dt>
+      <dd>Cascading Style Sheets - Language used for styling and layout formatting.</dd>
+      
+      <dt><b>DOM</b></dt>
+      <dd>Document Object Model - In-memory object representation of an HTML document.</dd>
+    </dl>
+  </section>
+
+  <hr>
+
+  <!-- ==================== SECTION 2: TABLES ==================== -->
+  <section id="table-section">
+    <h2>2. HTML Table with Colspan and Rowspan</h2>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+      <caption><b>Student Examination Performance</b></caption>
+      
+      <!-- Table Header -->
+      <thead>
+        <tr>
+          <th rowspan="2">Roll No</th>
+          <th rowspan="2">Student Name</th>
+          <th colspan="2">Marks</th>
+          <th rowspan="2">Result</th>
+        </tr>
+        <tr>
+          <th>Theory (100)</th>
+          <th>Lab (50)</th>
+        </tr>
+      </thead>
+
+      <!-- Table Body -->
+      <tbody>
+        <tr>
+          <td>501</td>
+          <td>Arun Kumar</td>
+          <td>88</td>
+          <td>45</td>
+          <td rowspan="2">Passed</td>
+        </tr>
+        <tr>
+          <td>502</td>
+          <td>Sneha Reddy</td>
+          <td>92</td>
+          <td>48</td>
+        </tr>
+      </tbody>
+
+      <!-- Table Footer -->
+      <tfoot>
+        <tr>
+          <th colspan="2">Class Average</th>
+          <td>90</td>
+          <td>46.5</td>
+          <td>-</td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+</body>
+</html>
