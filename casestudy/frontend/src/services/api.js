@@ -3,7 +3,8 @@
  * Connects directly to the backend Express endpoints.
  */
 
-const BASE_URL = import.meta.env.VITE_API_URL || '';
+const RAW_URL = import.meta.env.VITE_API_URL || 'https://fslab-casestudy.vercel.app';
+const BASE_URL = RAW_URL ? RAW_URL.replace(/\/$/, '') : '';
 
 /**
  * Helper to handle fetch responses and error extraction
