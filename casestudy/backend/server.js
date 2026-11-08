@@ -9,12 +9,27 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(express.json());
-
-app.use("/api/students", require("./routes/students"));
-
 app.use(cors());
 app.use(express.json());
+
+// Ensure database connection for both serverless functions (Vercel) and long-running instances
+async function connectDB() {
+    if (mongoose.connection.readyState >= 1) return;
+    await mongoose.connect(process.env.MONGODB_URI, {
+        dbName: process.env.DB_NAME
+    });
+}
+
+app.use(async (req, res, next) => {
+    try {
+        await connectDB();
+        next();
+    } catch (error) {
+        res.status(500).json({ error: "Database connection failed: " + error.message });
+    }
+});
+
+app.use("/api/students", require("./routes/students"));
 
 app.get("/api/health", (req, res) => {
     res.json({ message: "Student Management API is running!" });
@@ -22,10 +37,7 @@ app.get("/api/health", (req, res) => {
 
 async function startServer() {
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            dbName: process.env.DB_NAME
-        });
-
+        await connectDB();
         console.log("MongoDB Atlas connected successfully!");
 
         const PORT = process.env.PORT || 5000;
@@ -46,4 +58,8 @@ async function startServer() {
     }
 }
 
-startServer();
+if (require.main === module) {
+    startServer();
+}
+
+module.exports = app;
