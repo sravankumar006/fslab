@@ -18,7 +18,7 @@ export function StudentsView({
 
   // Extract unique departments from existing student list or fallback list
   const availableDepartments = useMemo(() => {
-    const defaultDepts = ['CSE', 'ECE', 'EEE', 'IT', 'MECH', 'CIVIL', 'AI&DS'];
+    const defaultDepts = ['CSE', 'ECE', 'EEE', 'IT', 'MECH', 'CIVIL', 'AI&ML'];
     const studentDepts = students.map((s) => s.department).filter(Boolean);
     const combined = Array.from(new Set([...defaultDepts, ...studentDepts]));
     return combined.sort();
